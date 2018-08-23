@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 /**
  * Represents a flow
  */
-public class YeelightFlow {
+public class YeelightFlow
+{
     /**
      * Represents an infinite count for a flow
      */
@@ -32,10 +33,12 @@ public class YeelightFlow {
 
     /**
      * Constructor for a flow
-     * @param count Number of times to run this flow
+     *
+     * @param count  Number of times to run this flow
      * @param action Action after flow stops
      */
-    public YeelightFlow(int count, YeelightFlowAction action) {
+    public YeelightFlow(int count, YeelightFlowAction action)
+    {
         this.setCount(count);
         this.setAction(action);
         this.transitions = new ArrayList<>();
@@ -43,53 +46,65 @@ public class YeelightFlow {
 
     /**
      * Getter for count (Number of times to run this flow)
+     *
      * @return Count
      */
-    public int getCount() {
+    public int getCount()
+    {
         return this.count;
     }
 
     /**
      * Setter for count (Number of times to run this flow)
+     *
      * @param count Number of times to run this flow
      */
-    public void setCount(int count) {
+    public void setCount(int count)
+    {
         this.count = Math.max(0, count);
     }
 
     /**
      * Getter for flow action (Action after flow stops)
+     *
      * @return Action
      */
-    public YeelightFlowAction getAction() {
+    public YeelightFlowAction getAction()
+    {
         return this.action;
     }
 
     /**
      * Setter for flow action (Action after flow stops)
+     *
      * @param action Action after flow stops
      */
-    public void setAction(YeelightFlowAction action) {
+    public void setAction(YeelightFlowAction action)
+    {
         this.action = action == null ? YeelightFlowAction.RECOVER : action;
     }
 
     /**
      * Getter for transitions list
+     *
      * @return Transitions list
      */
-    public List<YeelightTransition> getTransitions() {
+    public List<YeelightTransition> getTransitions()
+    {
         return this.transitions;
     }
 
     /**
      * Create params array for a command
+     *
      * @return Params array
      */
-    public Object[] createCommandParams() {
+    public Object[] createCommandParams()
+    {
         String flowExpression = this.transitions.stream()
                 .map(t -> YeelightUtils.joinIntArray(",", t.getTuple()))
                 .collect(Collectors.joining(","));
-        return new Object[] {
+        return new Object[]{
                 this.count * this.transitions.size(),
                 this.action.getValue(),
                 flowExpression
