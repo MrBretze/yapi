@@ -18,11 +18,14 @@ import java.util.concurrent.TimeUnit;
 public class YeelightDiscovery
 {
     private static final String ADVERTISEMENT_HOST = "239.255.255.250";
+    
     private static final int ADVERTISEMENT_PORT = 1982;
+
     private static final String SEARCH_MESSAGE = "M-SEARCH * HTTP/1.1\r\n" +
             "HOST: 239.255.255.250:1982\r\n" +
             "MAN: \"ssdp:discover\"\r\n" +
-            "ST: wifi_bulb";
+            "ST: \"wifi_bulb\"\r";
+
     private static final int DEFAULT_SEARCH_TIME = 10000;
 
     public static void searchDevice(boolean debug, int timeout, TimeUnit unit, DiscoveryListener listener)
